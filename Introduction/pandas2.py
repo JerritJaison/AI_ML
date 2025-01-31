@@ -33,24 +33,44 @@ import numpy as np
 # print(series_obj['a':'c'])#labels
 
 
-series_obj1 = pd.Series(np.arange(5),index=["zero","one","two","three","four"])
-print(series_obj1['zero':'two'])
+# series_obj1 = pd.Series(np.arange(5),index=["zero","one","two","three","four"])
+# print(series_obj1['zero':'two'])
 
-#pandas supports label based slicing and it is inclusive of both the strat and the stop lables in the cases of a series object.
-print(series_obj1['four':'one':-1]) #here when slicing, end is also included
-print(series_obj1.ndim) #gives dimension of array
-series_obj1.values([0,1,2,3,4])
-print(series_obj1.dtype)
-print(series_obj1.at['four'])
+# #pandas supports label based slicing and it is inclusive of both the strat and the stop lables in the cases of a series object.
+# print(series_obj1['four':'one':-1]) #here when slicing, end is also included
+# print(series_obj1.ndim) #gives dimension of array
+# series_obj1.values([0,1,2,3,4])
+# print(series_obj1.dtype)
+# print(series_obj1.at['four'])
 
-series_obj1 = pd.Series(np.arange(5),index=['zero','one','two','three'])
-print(series_obj1.loc['three'])
-# .iat -> acesses a singl4e value using its corresponding integer position
-print(series_obj1.iat['one']) #only integer is allowed so it wont run
-print(series_obj1.iat[4])
+# series_obj1 = pd.Series(np.arange(5),index=['zero','one','two','three'])
+# print(series_obj1.loc['three'])
+# # .iat -> acesses a singl4e value using its corresponding integer position
+# print(series_obj1.iat['one']) #only integer is allowed so it wont run
+# print(series_obj1.iat[4])
 
-print(series_obj1.empty) #indicates whether yur series object is empty or not
-print(series_obj1.index)
+# print(series_obj1.empty) #indicates whether yur series object is empty or not
+# print(series_obj1.index)
 
-print(series_obj1.hasnans) #indicates whether my series object has NaN values
-print(series_obj1.is_monotonic_increasing) #check whether 
+# print(series_obj1.hasnans) #indicates whether my series object has NaN values
+# print(series_obj1.is_monotonic_increasing) #check whether 
+#with panda series objects you have to ability to perform arithmetic operations in a vectorized manner
+#ie that you can perform these operation without looping through the elements in 
+#perform tehse operations on single series abject as well as multi
+
+series_obj2 = pd.Series(np.arange(7))
+print(series_obj2 -2)
+print(series_obj2 //2)
+
+series_obj3 =pd.Series(np.arange(8),list('abcsefgh'),name='ops_demo')
+print(series_obj3)
+
+#arithmetic ops btw two series
+series1= pd.Series(np.arange(7),index=list('abcdefg'))
+series2 = pd.Series(np.arange(6),index=list('defghi'))
+print(series1+series2)#same indexes get added. otherss NaN
+print(series1.tolist())
+print(series1.to_frame())
+
+
+
