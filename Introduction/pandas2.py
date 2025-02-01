@@ -58,19 +58,90 @@ import numpy as np
 #ie that you can perform these operation without looping through the elements in 
 #perform tehse operations on single series abject as well as multi
 
-series_obj2 = pd.Series(np.arange(7))
-print(series_obj2 -2)
-print(series_obj2 //2)
+# series_obj2 = pd.Series(np.arange(7))
+# print(series_obj2 -2)
+# print(series_obj2 //2)
 
-series_obj3 =pd.Series(np.arange(8),list('abcsefgh'),name='ops_demo')
-print(series_obj3)
+# series_obj3 =pd.Series(np.arange(8),list('abcsefgh'),name='ops_demo')
+# print(series_obj3)
 
-#arithmetic ops btw two series
-series1= pd.Series(np.arange(7),index=list('abcdefg'))
-series2 = pd.Series(np.arange(6),index=list('defghi'))
-print(series1+series2)#same indexes get added. otherss NaN
-print(series1.tolist())
-print(series1.to_frame())
+# #arithmetic ops btw two series
+# series1= pd.Series(np.arange(7),index=list('abcdefg'))
+# series2 = pd.Series(np.arange(6),index=list('defghi'))
+# print(series1+series2)#same indexes get added. otherss NaN
+# print(series1.tolist())
+# print(series1.to_frame())
+# print(series1.to_string())
 
+#python dataframes 
+#dataframe is a 2d labelled data structure that is used for data manipulation
+#it can store data of different types.every column holds value of a single dataype and you can have multiple columns with multiple data types
+#each row is labbelled with a unique index value and each column has unique label
+#can perform operations like filtering,sorting, merging,gouping and transforming
 
+#size of your dataframe can change you can add rows columns, or delete rows 
+#you can perform arithmetic operations on rows and columns
+
+# df = pd.DataFrame([1,2,3,4,5])
+# print(df.shape)
+
+# nested_list = [['alex',10],['bob',12,56],['calerke',20]]
+# df = pd.DataFrame(nested_list)
+# print(df)
+# df.index=['first','second','third']
+# print(df)
+
+# df1 = pd.DataFrame([['mumbai',1],['delhi',3,6,1],['bengluru',2,8],['kolkata',5],['chennai',1]])
+# print(df1.shape)#(5,4) because 5 rows and 4 column
+
+# #from a dictionary of ndarrays/lists
+# dict_list ={'name':['Tom','jack','steve','rick'],'age':[28,34,56,42]} #must have same length.not assigh NaN.name and age are column names
+# df3 =pd.DataFrame(dict_list)
+# print(df3)
+# #create dataframe from a list of dictionaries
+# sample_dict=[{'a':1,'b':2},{'a':5,'b':10,'c':20},{'a':9,'x':24,'b':2}] #a,b,c,x becomes column names
+# df4 =pd.DataFrame(sample_dict)
+# print(df4)
+
+# #creating a datframe from a dictinary of series objects
+# d ={'one':pd.Series([1,2,3],index=['a','b','c']),'two':pd.Series([1,2,3,4],index=list('abcd'))}
+# df5 =pd.DataFrame(d)
+# print(df5)
+f=pd.DataFrame({'name':['steve','lia','vin','katie'],'age':[32,28,45,38],'gender':['male','female','male','female'],'grade':[3.45,3.90,4,2.78]},index=['r1','r2','r3','r4'])
+print(f)
+# .iloc is used for slicng your dataframe basd on position(integer bsed inexing)
+# .loc is used for slicing datframe based on labels(idex label or column labels)
+
+print(f['name'])#get name column and values
+#print(f.loc[['steve','katie'],['name','age']])
+print(f.loc[['r1', 'r4'], ['name', 'age']])
+
+#f.loc[['row1','row2']]
+
+f[f['grade']>3.5]
+
+f[f['grade']>3.5 & f['age']>35] #instaed of and & symbol is used
+
+f[[False,False,True,True]]
+
+f.loc[f["age"]>=35,['name','grade']]
+
+f.loc[f['age']>=35,'grade']=4.5#modifying single columns
+
+#filter and update multiple columns
+condition =f['name'].str.startswith('S')
+f.loc[condition,['age','grade']]=[35,2.25]
+condition = f['country']=='UK' & f['age']>=35
+f.loc[condition,['name','review']]
+
+#Renaming columns and rows of your dataframe
+f=f.rename(columns={'name':'namm','country':'nation'},index={'row1':'entry1','row2':'entry2'})
+
+#adding new columns
+f['sport']=['cricket','football','rowing','rugby','boxing']
+#adding between columns
+f.insert(4,'city',['melbourne','detroit','london','manhattan','boston','sydney'])
+
+f = f.drop(columns='city')
+f.replace({'sports':'cricket','city':'melbourne'},"Nil",inplace=True)#replace values with Nil.inplace true means modify original data is modified
 
