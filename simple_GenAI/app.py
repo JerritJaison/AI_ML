@@ -11,7 +11,7 @@ import pyjokes
 import voice as v
 
 
-my_api_key = "AIzaSyBI0We1YJCfqYOXV_jukqu2CEVG98m2f2I"  
+my_api_key = "your key"  
 genai.configure(api_key=my_api_key)
 #genai.configure(api_key=os.getenv('AIzaSyBI0We1YJCfqYOXV_jukqu2CEVG98m2f2I'))
 
